@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?5togbn');
-  src:  url('fonts/icomoon.eot?5togbn#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.woff2?5togbn') format('woff2'),
-    url('fonts/icomoon.ttf?5togbn') format('truetype'),
-    url('fonts/icomoon.woff?5togbn') format('woff'),
-    url('fonts/icomoon.svg?5togbn#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?y968dv');
+  src:  url('fonts/icomoon.eot?y968dv#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.woff2?y968dv') format('woff2'),
+    url('fonts/icomoon.ttf?y968dv') format('truetype'),
+    url('fonts/icomoon.woff?y968dv') format('woff'),
+    url('fonts/icomoon.svg?y968dv#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-bcard-card-28:before {
+  content: "\e91a";
+}
 .icon-excel-29:before {
   content: "\e918";
 }
