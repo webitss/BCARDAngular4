@@ -26,7 +26,7 @@
             <a routerLink="preference">
                 <span class="icon-preference-02"></span>העדפות</a>
             <a routerLink="service">
-                <span class="icon-Actions-08"></span>תיעוד שיחות</a>
+                <span class="icon-call-23"></span>תיעוד שיחות</a>
             <a routerLink="users" *ngIf="!service.customer">
                 <span class="icon-users-25"></span>משתמשים</a>
             <a routerLink="stakeholders" *ngIf="!service.customer">
@@ -55,7 +55,7 @@
                 <input class="btn-sub-header" type="submit" value="אישור" *ngIf="!service.flag" />
                 <label *ngIf="service.flag &&service.customer">שם לקוח:{{cust.currentCustomer.display_name}}</label>
                 <label *ngIf="service.flag &&!service.customer">שם משווק:{{agnt.currentAgent.display_name}}</label>
-                <input type="button" />
+                <input type="button" class="icon-print-30" />
             </div>
             <div class="content-after">
                 <router-outlet></router-outlet>
