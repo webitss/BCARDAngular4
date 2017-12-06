@@ -1,0 +1,99 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?4gwc4b');
+  src:  url('fonts/icomoon.eot?4gwc4b#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.woff2?4gwc4b') format('woff2'),
+    url('fonts/icomoon.ttf?4gwc4b') format('truetype'),
+    url('fonts/icomoon.woff?4gwc4b') format('woff'),
+    url('fonts/icomoon.svg?4gwc4b#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Actions-08:before {
+  content: "\e900";
+}
+.icon-arrow-down-19:before {
+  content: "\e901";
+}
+.icon-arrow-left-20:before {
+  content: "\e902";
+}
+.icon-bank-24:before {
+  content: "\e903";
+}
+.icon-call-23:before {
+  content: "\e904";
+}
+.icon-cards_Artboard-2-01:before {
+  content: "\e905";
+}
+.icon-Change-15:before {
+  content: "\e906";
+}
+.icon-client-05:before {
+  content: "\e907";
+}
+.icon-delete-13:before {
+  content: "\e908";
+}
+.icon-Details-04:before {
+  content: "\e909";
+}
+.icon-Documents-03:before {
+  content: "\e90a";
+}
+.icon-edit-14:before {
+  content: "\e90b";
+}
+.icon-eye-12:before {
+  content: "\e90c";
+}
+.icon-full-star-18:before {
+  content: "\e90d";
+}
+.icon-Groups-09:before {
+  content: "\e90e";
+}
+.icon-Login-settings-07:before {
+  content: "\e90f";
+}
+.icon-login-17:before {
+  content: "\e910";
+}
+.icon-ownership-06:before {
+  content: "\e911";
+}
+.icon-ownership-22:before {
+  content: "\e912";
+}
+.icon-preference-02:before {
+  content: "\e913";
+}
+.icon-upload-16:before {
+  content: "\e914";
+}
+.icon-users-25:before {
+  content: "\e915";
+}
+.icon-Wallets-10:before {
+  content: "\e916";
+}
+.icon-x-11:before {
+  content: "\e917";
+}

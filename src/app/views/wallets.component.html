@@ -1,0 +1,150 @@
+<div>
+    <div class="header-main float-right">רשימת ארנקים ללקוח</div>
+
+    <input type="button" (click)="showDialog = !showDialog" class="btn btn-bcard float-left margin-t-36" value="הוסף ארנק" />
+    <div class="clear"></div>
+    <div>
+        <table class="table-bcard width-table">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>שם</th>
+                <th>יתרה</th>
+                <th>מספר</th>
+                <th>סטטוס</th>
+            </tr>
+
+            <tr *ngFor="let wallet of app.getWallets() let i=index">
+                <td class="icon-edit-14 icon-in-table" (click)="service.enable(app.frmWallets)"></td>
+                <td class="icon-eye-12 icon-in-table" (click)="app.setCurrentWallet(i)"></td>
+                <td class="icon-full-star-18 icon-in-table"></td>
+                <td>
+                    <input type="text" [(ngModel)]="wallet.wallet_name">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="wallet.balance">
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="wallet.wallet_number">
+                </td>
+                <td>
+                    <select [(ngModel)]="wallet.wallet_status_id">
+                        <option [ngValue]="s.iId" *ngFor="let s of tables.walletsStatusList">{{s.nvName}}</option>
+                    </select>
+                </td>
+            </tr>
+
+
+
+
+        </table>
+
+
+        <form [formGroup]="app.frmWallets" *ngIf="!isClosed" class="form-row-wrap small-form">
+            <div class="header-small-form">
+                <span>פרטים נוספים</span>
+                <span class="icon-x-11 close-dialog" (click)="close()"></span>
+            </div>
+            <div class="body-small-form">
+                <div class="form-row-wrap">
+                    <div class="form-row">
+                        <label>מטבע</label>
+                        <input type="text" [(ngModel)]="app.getCurrentWallet().currency_code" formControlName="coin"
+                        />
+                    </div>
+                    <div class="form-row">
+                        <label>סוג קשר</label>
+                        <select formControlName="relation">
+                            <option>אחר</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label>אשראי</label>
+                        <input type="text" formControlName="credit" />
+                    </div>
+                    <div class="form-row">
+                        <label>ת. יתרה זמנית</label>
+                        <input type="text" [(ngModel)]="app.getCurrentWallet().balance_date" formControlName="curBalanceDate"
+                        />
+                    </div>
+                    <div class="form-row">
+                        <label>יתרה זמנית</label>
+                        <input type="text" [(ngModel)]="app.getCurrentWallet().balance" formControlName="curBalance"
+                        />
+                    </div>
+                    <div class="form-row">
+                        <label>תוכנית מחירים</label>
+                        <input type="text" formControlName="defaultProgram" />
+                    </div>
+                    <div class="form-row">
+                        <label>ס' IVR</label>
+                        <input type="text" formControlName="IVR" />
+                    </div>
+                    <div class="form-row">
+                        <label>סגירה</label>
+                        <input type="text" formControlName="close" />
+                    </div>
+                    <div class="form-row">
+                        <label>הקמה</label>
+                        <input type="text" formControlName="create" />
+                    </div>
+                    <div class="form-row">
+                        <label>תאריך יתרה</label>
+                        <input type="text" disabled/>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <div class="save-details">
+            <input class="btn-bcard" type="submit" value="שמירה" />
+        </div>
+    </div>
+</div>
+<app-dialog [(visible)]="showDialog">
+    <div class="header-dialog">
+        <label>הוספת ארנק</label>
+    </div>
+    <div class="dialog-body">
+        <div class="form-row-wrap">
+            <div class="form-row">
+                <label>שם כרטיס</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>ס' IVR</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>מספר</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>הקמה</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>סטטוס</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>סוג קשר</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>מטבע</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>תוכנית מחירים</label>
+                <input type="text" />
+            </div>
+            <div class="form-row">
+                <label>אשראי</label>
+                <input type="text" />
+            </div>
+        </div>
+        <input type="button" (click)="showDialog = !showDialog" class="btn btn-bcard center-btn" value="שמור" />
+    </div>
+</app-dialog>

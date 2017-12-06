@@ -1,0 +1,160 @@
+<div>
+    <div class="header-main">פרטים כלליים</div>
+    <form class="form-row-wrap" [formGroup]="service.frmDetails" (ngSubmit)="service.saveDetails(service.frmDetails)">
+        <div class="form-row">
+            <label>שם פרטי</label>
+            <input type="text" formControlName="private_name" [(ngModel)]="service.currentCustomer.private_name"
+                #p/>errors:{{p.valid?true:false}}{{p.dirty}}{{p.value}}</div>
+
+        <div class="form-row">
+            <label>שם משפחה</label>
+            <input type="text" formControlName="family_name" [(ngModel)]="service.currentCustomer.family_name"
+            />
+        </div>
+        <div class="form-row">
+            <label>ת. לידה</label>
+            <input type="text" formControlName="birth_date" [(ngModel)]="service.currentCustomer.birth_date" [value]="ext.getDateString(service.currentCustomer.birth_date)"/>
+        </div>
+        <div class="form-row">
+            <label>מגדר</label>
+            <select #sel formControlName="gender_id" [(ngModel)]="service.currentCustomer.gender_id">
+                <option [ngValue]="g.iId" *ngFor="let g of tables.genderList">{{g.nvName}}</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>מדינה</label>
+            <select formControlName="ID_number_country_code" [(ngModel)]="service.currentCustomer.ID_number_country_code">
+                <option [ngValue]="c.nvId" *ngFor="let c of tables.countriesList">{{c.nvName}}</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>מספר מזהה</label>
+            <input type="text" formControlName="ID_number" [(ngModel)]="service.currentCustomer.ID_number" />
+        </div>
+        <div class="form-row">
+            <label>סוג מספר</label>
+            <select formControlName="ID_type_id" [(ngModel)]="service.currentCustomer.ID_type_id">
+                <option [ngValue]="i.iId" *ngFor="let i of tables.idTypeList">{{i.nvName}}</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label>שם להצגה</label>
+            <input type="text" formControlName="display_name" [(ngModel)]="service.currentCustomer.display_name"
+            />
+        </div>
+        <div class="border-btween">&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -</div>
+        <div class="form-row">
+            <label *ngIf="app.customer">מעמד לקוח</label>
+            <label *ngIf="!app.customer">מעמד משווק</label>
+            <select formControlName="entity_class_id" [(ngModel)]="service.currentCustomer.entity_class_id">
+                <option [ngValue]="c.iId" *ngFor="let c of tables.classList">{{c.nvName}}</option>
+            </select>
+            <input class="other-input" type="text" placeholder="אחר" formControlName="elseType" />
+        </div>
+        <div class="form-row">
+            <label *ngIf="app.customer">סוג לקוח</label>
+            <label *ngIf="!app.customer">סוג משווק</label>
+            <select formControlName="sub_type_id" [(ngModel)]="service.currentCustomer.sub_type_id">
+                <option [ngValue]="t.iId" *ngFor="let t of tables.typeList">{{t.nvName}}</option>
+            </select>
+            <input class="other-input" type="text" placeholder="אחר" formControlName="entity_class_other" [(ngModel)]="service.currentCustomer.entity_class_other"
+            />
+        </div>
+        <div class="form-row">
+            <label>תכנית שיווק</label>
+            <select formControlName="default_program_id" [(ngModel)]="service.currentCustomer.default_program_id">
+                <option [ngValue]="p.iId" *ngFor="let p of tables.programList">{{p.nvName}}</option>
+            </select>
+        </div>
+        <div class="border-btween">&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp;
+            -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -&nbsp; -</div>
+
+        <div class="form-row">
+            <label>ת. הקמה</label>
+            <input type="text" disabled [value]="ext.getDateString(service.currentCustomer.open_date)" />
+        </div>
+        <div class="form-row">
+            <label>ת. עריכה אחרונה</label>
+            <input type="text" disabled [value]="ext.getDateString(service.currentCustomer.date_modified)"
+            />
+        </div>
+        <div class="form-row">
+            <label>ת. סגירה</label>
+            <input type="text" disabled [value]="ext.getDateString(service.currentCustomer.close_date)" />
+        </div>
+        <div class="form-row">
+            <label>שם משתמש</label>
+            <input type="text" formControlName="login_user_name" [(ngModel)]="service.currentCustomer.login_user_name"
+            />
+        </div>
+        <div class="form-row">
+            <label>סטטוס</label>
+            <select formControlName="customer_status_id" [(ngModel)]="service.currentCustomer.customer_status_id">
+                <option [ngValue]="s.iId" *ngFor="let s of tables.statusList">{{s.nvName}}</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label *ngIf="app.customer">הערות לקוח</label>
+            <label *ngIf="!app.customer">הערות משווק</label>
+            <textarea formControlName="note" [(ngModel)]="service.currentCustomer.note"></textarea>
+        </div>
+
+
+        <div class="form-row">
+            <label class="info-label">שם משווק:{{service.currentCustomer.id_agent}}</label>
+            <label class="info-label">רמת הסיכון של הלקוח:{{service.currentCustomer.risk}}</label>
+            <label class="info-label">עורך אחרון:{{service.currentCustomer.initiator_id}}</label>
+            <!-- <label class="info-label" *ngIf="edit">משתמש מעדכן:{{service.currentUser.user_name}}</label> -->
+        </div>
+
+
+        <div class="form-row">
+            <input type="checkbox" formControlName="is_loaded_files" [(ngModel)]="service.currentCustomer.is_loaded_files" />
+            <label>המסמכים הועלו</label>
+            <input type="checkbox" formControlName="is_locked" [(ngModel)]="service.currentCustomer.is_locked" />
+            <label *ngIf="app.customer">לקוח נעול</label>
+            <label *ngIf="!app.customer">משווק נעול</label>
+        </div>
+
+        <div class="btn-under">
+
+
+            <input class="btn-bcard" type="submit" value="שמירה" [disabled]="!service.frmDetails.valid" />
+            <input class="btn-bcard" type="button" value="עריכה" (click)="edit=true;ext.enable(service.frmDetails)" />
+            <div class="clear">
+            </div>
+        </div>
+
+    </form>
+</div>

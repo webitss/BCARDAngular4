@@ -1,0 +1,57 @@
+<div>
+    <label>בעלי ענין</label>
+    <input type="button" value="הוספת בעל ענין" (click)="showDialog=!showDialog"/>
+        <table class="table-bcard margin-t-50 width-table">
+            <tr>
+                <th></th>
+                
+                <th></th>
+                <th>שם להצגה</th>
+                <th>סוג בעל ענין</th>
+                <th>מין</th>
+                <th>מספר ת"ז</th>
+                <th>סוג ת"ז</th>
+                <th>מדינה</th>
+                <th>ת. לידה</th>
+                <th></th>
+             </tr>
+           
+            <tr>
+                <td class="icon-edit-14 icon-in-table"></td>
+                
+                <td class="icon-delete-13 icon-in-table" (click)="delete()"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                <div class="tooltip">
+                    <div class="icon-Details-04 icon-in-table">
+                        <span class="tooltiptext">פרטים נוספים</span>
+                    </div>
+                </div>
+            </td>
+             </tr>
+           
+        </table>
+        <app-dialog [(visible)]="showDialog" >
+        <div class="header-dialog"><label>הוספת בעל ענין</label></div> 
+        <div class="dialog-body">
+        <div class="form-row-wrap">
+       <div class="form-row">  <label>שם פרטי</label><input type="text"/></div> 
+       <div class="form-row">  <label>שם משפחה</label><input type="text"/></div> 
+       <div class="form-row"> <label>שם להצגה</label><input type="text"/></div> 
+       <div class="form-row"> <label>מין</label><input type="text"/></div> 
+       <div class="form-row"><label>מספר ת"ז</label><input type="text"/></div> 
+       <div class="form-row"> <label>סוג ת"ז</label><input type="text"/></div> 
+       <div class="form-row"> <label>מדינה</label><input type="text"/></div> 
+       <div class="form-row"> <label>תאריך לידה</label><input type="text"/></div> 
+       <div class="form-row"><label>תאריך פתיחה</label><input type="text"/></div>
+       <div class="form-row"><label>תאריך עדכון</label><input type="text"/></div>
+       <div class="form-row"><label>תאריך סגירה</label><input type="text"/></div>
+       <div class="form-row"><label>הערות</label><input type="text"/></div></div> 
+         <input type="button" (click)="showDialog = !showDialog" class="btn btn-bcard center-btn" value="שמור"/></div> 
+     </app-dialog>

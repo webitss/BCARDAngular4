@@ -1,0 +1,211 @@
+<div>
+    <details>
+        <summary class="open-div">כתובות</summary>
+        <table class="table-bcard table-top-border">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>סוג</th>
+                <th>כתובת</th>
+                <th>עיר</th>
+                <th>מיקוד</th>
+                <th>מדינה</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let item of service.getCommDetails().AddressList let i = index">
+                <td class="icon-edit-14 icon-in-table" (click)="edit(i,'address')"></td>
+                <td *ngIf="item.is_default" class="icon-full-star-18 icon-in-table"></td>
+                <td *ngIf="!item.is_default" class="icon-preference-02 icon-in-table" (click)="item.is_default=service.changeDefault(service.getCommDetails().AddressList,item.type_id)"></td>
+                <td class="icon-delete-13 icon-in-table" (click)="service.deleteCommDetail(item.type_id,item.communication_id)"></td>
+                <td>
+                    <select [disabled]="canEdit(i,'address')" [(ngModel)]="item.type_id">
+                        <option *ngFor="let s of tables.addressTypeList" [ngValue]="s.iId">{{s.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(i,'address')" [(ngModel)]="item.address">
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(i,'address')" [(ngModel)]="item.city">
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(i,'address')" [(ngModel)]="item.zip_code">
+                </td>
+                <td>
+                    <select [disabled]="canEdit(i,'address')" [(ngModel)]="item.country_code">
+                        <option *ngFor="let c of tables.countriesList" [ngValue]="c.nvId">{{c.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <div class="tooltip">
+                        <div class="icon-Details-04">
+                            <span class="tooltiptext">{{item.initiator_id}} + {{item.date_modified}}</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="icon-edit-14 icon-in-table" (click)="edit(-1,'address')"></td>
+                <td *ngIf="service.newAddress.is_default" class="icon-full-star-18 icon-in-table" (click)="service.newAddress.is_default=false"></td>
+                <td *ngIf="!service.newAddress.is_default" class="icon-preference-02 icon-in-table" (click)="service.newAddress.is_default=true"></td>
+                <td class="icon-delete-13 icon-in-table" (click)="delete()"></td>
+                <td>
+                    <select [disabled]="canEdit(-1,'address')">
+                        <option *ngFor="let s of tables.addressTypeList" [ngValue]="s.iId">{{s.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(-1,'address')" [(ngModel)]="service.newAddress.address">
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(-1,'address')" [(ngModel)]="service.newAddress.city">
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(-1,'address')" [(ngModel)]="service.newAddress.zip_code">
+                </td>
+                <td>
+                    <select [disabled]="canEdit(-1,'address')" [(ngModel)]="service.newAddress.country_code">
+                        <option *ngFor="let c of tables.countriesList" [ngValue]="c.nvId">{{c.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <div class="tooltip">
+                        <div class="icon-Details-04">
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+    </details>
+    <details>
+        <summary class="open-div">טלפונים</summary>
+        <table class="table-bcard table-top-border">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>סוג</th>
+                <th>טלפון</th>
+                <th>מדינה</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let item of service.getCommDetails().TelephoneList let i = index">
+                <td class="icon-edit-14 icon-in-table" (click)="edit(i,'phone')"></td>
+                <td *ngIf="item.is_default" class="icon-full-star-18 icon-in-table"></td>
+                <td *ngIf="!item.is_default" class="icon-preference-02 icon-in-table" (click)="item.is_default=service.changeDefault(service.getCommDetails().TelephoneList,item.type_id)"></td>
+                <td class="icon-delete-13 icon-in-table" (click)="service.deleteCommDetail(item.type_id,item.communication_id)"></td>
+                <td>
+                    <select [(ngModel)]="item.type_id" [disabled]="canEdit(i,'phone')">
+                        <option *ngFor="let t of tables.telephoneTypeList" [ngValue]="t.iId">{{t.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(i,'phone')" [(ngModel)]="item.telephone" />
+                </td>
+                <td>
+                    <select [disabled]="canEdit(i,'phone')" [(ngModel)]="item.country_code">
+                        <option *ngFor="let c of tables.countriesList" [ngValue]="c.nvId">{{c.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <div class="tooltip">
+                        <div class="icon-Details-04 icon-in-table">
+                            <span class="tooltiptext">{{item.initiator_id}} + {{item.date_modified}}</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="icon-edit-14 icon-in-table" (click)="edit(-1,'phone')"></td>
+                <td *ngIf="service.newTelephone.is_default" class="icon-full-star-18 icon-in-table" (click)="service.newAddress.is_default=false"></td>
+                <td *ngIf="!service.newTelephone.is_default" class="icon-preference-02 icon-in-table" (click)="service.newAddress.is_default=true"></td>
+                <td class="icon-delete-13 icon-in-table" (click)="delete()"></td>
+                <td>
+                    <select [disabled]="canEdit(-1,'phone')" [(ngModel)]="service.newTelephone.type_id">
+                        <option *ngFor="let t of tables.telephoneTypeList" [ngValue]="t.iId">{{t.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(-1,'phone')" [(ngModel)]="service.newTelephone.telephone" />
+                </td>
+                <td>
+                    <select [disabled]="canEdit(-1,'phone')" [(ngModel)]="service.newTelephone.country_code">
+                        <option *ngFor="let c of tables.countriesList" [ngValue]="c.nvId">{{c.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <div class="tooltip">
+                        <div class="icon-Details-04 icon-in-table">
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+    </details>
+    <details>
+        <summary class="open-div">דואר אלקטרוני</summary>
+        <table class="table-bcard table-top-border">
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>סוג</th>
+                <th>דוא"ל</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let item of service.getCommDetails().EmailList let i = index">
+                <td class="icon-edit-14 icon-in-table" (click)="edit(i,'mail')"></td>
+                <td *ngIf="item.is_default" class="icon-full-star-18 icon-in-table"></td>
+                <td *ngIf="!item.is_default" class="icon-preference-02 icon-in-table" (click)="item.is_default=service.changeDefault(service.getCommDetails().EmailList,item.type_id)"></td>
+                <td class="icon-delete-13 icon-in-table" (click)="service.deleteCommDetail(item.type_id,item.communication_id)"></td>
+                <td>
+                    <select [(ngModel)]="item.type_id" [disabled]="canEdit(i,'mail')">
+                        <option *ngFor="let t of tables.emailTypeList" [ngValue]="t.iId">{{t.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(i,'mail')" [(ngModel)]="item.email" />
+                </td>
+                <td>
+                    <div class="tooltip">
+                        <div class="icon-Details-04 icon-in-table">
+                            <span class="tooltiptext">{{item.initiator_id}} + {{item.date_modified}}</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="icon-edit-14 icon-in-table" (click)="edit(-1,'mail')"></td>
+                <td *ngIf="service.newEmail.is_default" class="icon-full-star-18 icon-in-table" (click)="service.newAddress.is_default=false"></td>
+                <td *ngIf="!service.newEmail.is_default" class="icon-preference-02 icon-in-table" (click)="service.newAddress.is_default=true"></td>
+                <td class="icon-delete-13 icon-in-table" (click)="delete()"></td>
+                <td>
+                    <select [disabled]="canEdit(-1,'mail')" [(ngModel)]="service.newEmail.type_id">
+                        <option *ngFor="let t of tables.emailTypeList" [ngValue]="t.iId">{{t.nvName}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" [disabled]="canEdit(-1,'mail')" [(ngModel)]="service.newEmail.email" />
+                </td>
+                <td>
+                    <div class="tooltip">
+                        <div class="icon-Details-04 icon-in-table">
+                            <span class="tooltiptext">Tooltip text</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+
+        </table>
+    </details>
+    <div class="save-details">
+        <input class="btn-bcard" type="button" value="שמירה" (click)="service.saveMoreDetails()" />
+        <div class="clear"> </div>
+    </div>
+</div>

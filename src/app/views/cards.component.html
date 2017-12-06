@@ -1,0 +1,102 @@
+<div>
+    <table class="table-bcard margin-t-50 width-table">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>שם</th>
+            <th>מטבע</th>
+            <th>סטטוס</th>
+            <th>מספר</th>
+         </tr>
+        <tr> 
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><input type="search"></td>
+            <td><input type="search"></td>
+            <td><input type="search"></td>
+            <td><input type="search"></td>
+           
+
+        </tr>
+        <tr *ngFor="let card of app.getCards()">
+            <td class="icon-full-star-18 icon-in-table"></td>
+            <td class="icon-eye-12 icon-in-table" (click)="showDialog = !showDialog"></td>
+            <td class="icon-edit-14 icon-in-table" (click)="service.enable(app.frmCards)"></td>
+            <td class="icon-delete-13 icon-in-table" (click)="delete()"></td>
+            <td><input type="text" [(ngModel)]="card.card_type_id"/></td>
+            <td><input type="text" [(ngModel)]="card.card_number"/></td>
+            <td><select [(ngModel)]="card.currency_code">
+            <option [ngValue]="c.iId" *ngFor="let c of tables.currencyList">{{c.nvName}}</option>
+        </select></td>
+            <td><select [(ngModel)]="card.card_status_id">
+            <option [ngValue]="c.iId" *ngFor="let c of tables.cardStatusList">{{c.nvName}}</option>
+        </select></td>
+            
+            
+            
+        </tr>
+       
+    </table>
+    
+    <form class="form-row-wrap small-form margin-t-50" [formGroup]="app.frmCards">
+    <div class="header-small-form">
+    <span>פרטים נוספים</span><span class="icon-x-11 close-dialog"></span></div>
+    <div class="body-small-form">
+    <div class="form-row-wrap">
+    <div class="form-row">
+    <label>  ס' ivr:</label>
+        <input formControlName="login_ivr_password"></div>
+        <div class="form-row">  <label>הקמה:</label> 
+        <input type="text" formControlName="establishment_date"></div>
+        <div class="form-row">  <label>יתרה:</label>
+        <input formControlName="balance"></div>
+        <div class="form-row">  <label>תאריך יתרה:</label> 
+        <input formControlName="balance_date"></div>
+        <div class="form-row">  <label>סגירה:</label> 
+        <input formControlName="close_date"></div>
+        <div class="form-row">  <label>תאריך פג תוקף:</label> 
+        <input disabled></div>
+        <div class="form-row">   <label>:cvv</label>
+        <input disabled></div>
+        <div class="form-row">  <label>תוקן:</label> 
+        <input disabled></div>
+        <div class="form-row">  <label>נומרטור:</label> 
+        <input disabled></div>
+        <div class="form-row">  <label> תאריך פתיחה:</label>
+        <input disabled></div>
+        <div class="form-row">  <label>עורך אחרון:</label> 
+        <input disabled></div>
+        <div class="form-row">  <label>סוכן:</label>
+        <input disabled></div>
+        <div class="form-row">  <label> נעול:</label> 
+        <select formControlName="isLocked">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select></div>
+        <div class="form-row">  <label> תוכנית מחירים:</label>
+        <select formControlName="defaultProgramId">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select></div>
+      
+        </div>  </div>
+      
+
+       
+    </form>
+    <div class="save-details">
+    
+              <input class="btn-bcard" type="submit" value="שמירה" [disabled]="!app.frmCards.valid">
+               </div>
+</div>
+<app-dialog [(visible)]="showDialog">
+    fdghdfgdf
+</app-dialog>

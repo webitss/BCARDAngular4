@@ -1,0 +1,69 @@
+<div class="height100">
+    <div class="header-div">
+        <span>{{service.currentUser.user_name}}</span>
+        <a class="icon-login-17" (click)="service.logout()"></a>
+    </div>
+    <div class="wrap-all-content">
+        <nav class="side-menu-wrap">
+            <a routerLink="customer" *ngIf="service.customer">
+                <span class="icon-client-05"></span>פרטי לקוח</a>
+            <a routerLink="agent" *ngIf="!service.customer">
+                <span class="icon-client-05"></span>פרטי משווק</a>
+            <a routerLink="moreDetails">
+                <span class="icon-Details-04"></span>תקשורת</a>
+            <a routerLink="moreDetails">
+                <span class="icon-Details-04"></span>כרטיסי BCARD</a>
+            <a routerLink="purses">
+                <span class="icon-Wallets-10"></span>ארנקים</a>
+            <a routerLink="cards">
+                <span class="icon-cards_Artboard-2-01"></span>כרטיסי אשראי</a>
+            <a routerLink="cards">
+                <span class="icon-bank-24"></span>חשבונות בנק</a>
+            <a routerLink="groups">
+                <span class="icon-Groups-09"></span>קבוצות השתייכות</a>
+            <a routerLink="documents">
+                <span class="icon-Documents-03"></span>מסמכים שהועלו</a>
+            <a routerLink="preference">
+                <span class="icon-preference-02"></span>העדפות</a>
+            <a routerLink="service">
+                <span class="icon-Actions-08"></span>תיעוד שיחות</a>
+            <a routerLink="users" *ngIf="!service.customer">
+                <span class="icon-users-25"></span>משתמשים</a>
+            <a routerLink="stakeholders" *ngIf="!service.customer">
+                <span class="icon-ownership-06"></span>בעלי ענין</a>
+        </nav>
+        <form class="main-content" [formGroup]="service.frmName" (ngSubmit)="service.select(service.frmName)">
+            <div class="sub-header">
+                <i class="icon-Change-15" (click)="change()"></i>
+                <select (change)="selectChanged($event) " *ngIf="!service.flag">
+                    <option id="customer">לקוח</option>
+                    <option id="agent">משווק</option>
+                </select>
+                <span>מס' כרטיס:</span>
+                <input type="text" />
+                <span *ngIf="service.customer&&!service.flag">שם לקוח:</span>
+                <span *ngIf="!service.customer&&!service.flag">שם משווק:</span>
+                <div *ngIf="!service.flag" style="display: inline">
+                    <input type="text" formControlName="name" (input)="service.search($event)" list="custList" />
+                    <datalist id="custList">
+                        <option *ngFor="let cust of service.nameFilter">{{cust}}</option>
+                    </datalist>
+                </div>
+                <span *ngIf="!service.flag&&service.customer">מס' ת.ז./דרכון:</span>
+                <span *ngIf="!service.flag&&!service.customer">מס' משווק:</span>
+                <input type="text" *ngIf="!service.flag" formControlName="pass" />
+                <input class="btn-sub-header" type="submit" value="אישור" *ngIf="!service.flag" />
+                <label *ngIf="service.flag &&service.customer">שם לקוח:{{cust.currentCustomer.display_name}}</label>
+                <label *ngIf="service.flag &&!service.customer">שם משווק:{{agnt.currentAgent.display_name}}</label>
+                <input type="button" />
+            </div>
+            <div class="content-after">
+                <router-outlet></router-outlet>
+            </div>
+
+        </form>
+    </div>
+
+
+
+</div>

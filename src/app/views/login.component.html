@@ -1,0 +1,14 @@
+<div class="header-login"></div>
+<div class="header-login-b"></div>
+<div class="center-div">
+    <span>התחברות למערכת המשרד</span>
+    <br>
+    <form [formGroup]="service.frmLogin" (ngSubmit)="service.login(service.frmLogin)">
+        <input type="text" placeholder="שם משתמש" formControlName="login_user_name" />
+        <br>
+        <input type="password" placeholder="סיסמה" formControlName="login_password" />
+        <br>
+        <input class="login-btn" type="submit" value="כניסה" [disabled]="!service.frmLogin.valid" />
+        <!--(click)="auth.login()"-->
+    </form>
+</div>
